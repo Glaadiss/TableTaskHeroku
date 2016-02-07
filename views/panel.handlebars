@@ -1,0 +1,138 @@
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Witaj {{email}}</a>
+                <a class="navbar-brand" href="/logout"> Wyloguj </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#"></a>
+                    </li>
+     
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container">
+
+        <hr>
+
+        <div class="row">
+            <div class="col-sm-4" id="new">
+                <img class="img-circle img-responsive img-center" src="../images/11.jpg" alt="Nowe">
+                <h2 style="text-align:center">Nowe Zadanie</h2>
+                <p></p>
+            </div>
+            <div class="col-sm-4" id="list">
+                <img class="img-circle img-responsive img-center" src="../images/22.jpg" alt="zadania">
+                <h2 style="text-align:center">Twoje zadania</h2>
+                <p></p>
+            </div>
+
+             <div class="col-sm-4" id="settings">
+                <img class="img-circle img-responsive img-center" src="../images/44.jpg" alt="ustawienia">
+                <h2 style="text-align:center">Ustawienia</h2>
+                <p></p>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <hr>
+        <div class="row" id="neww" style="display:none;">
+            <form method="post" action="/new">
+                <div class="form-group ">
+                      <label for="topic">Temat:</label>
+                      <input type="text" class="form-control" id="topic" name="topic">
+                </div>
+                <div class="form-group">
+                      <label for="opis">Opis:</label>
+                      <textarea class="form-control " id="content" name="content"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="data">Data:</label><br>
+                    <input type="text"  id="date" name="date">
+                    <input type="text"  id="time" name="time">
+                </div>
+ 
+                <div class="form-group">
+                      <button type="submit" class="btn btn-default">Dodaj</button>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="row" id="listt" style="display:none;">
+            <h3>
+            <table class="table table-striped">
+            <tr><td> Temat: </td><td> Opis: </td> <td> Data: </td>
+            {{#each result}}
+            <tr><td> {{this.topic}}</td><td> {{this.content}}</td> <td> {{this.date}} {{this.time}} </td>
+            {{/each}}
+            </table>
+            </h3>
+        </div>
+
+        <div class="row" id="settingss" style="display:none;">
+
+
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Bartłomiej Gładys</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+        <script src="../timePicker/jquery.timepicker.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $('#new').click(function(){
+                $('#neww').slideToggle( "fast");
+                $('#listt').css('display', 'none');
+                $('#settingss').css('display', 'none');
+                $("html, body").animate({ scrollTop: 500 }, "fast");
+
+            });
+            
+            $('#list').click(function(){
+                $('#neww').css('display', 'none')
+                $('#listt').slideToggle( "fast");
+                $('#settingss').css('display', 'none');
+                $("html, body").animate({ scrollTop: 500 }, "fast");
+            })
+
+            $('#settings').click(function(){
+                $('#neww').css('display', 'none')
+                $('#listt').css('display', 'none')
+                $('#settingss').slideToggle( "fast");
+                $("html, body").animate({ scrollTop: 500 }, "fast");
+            })
+
+            $('#time').timepicker({ 'timeFormat': 'H:i:s' });  
+            $( "#date" ).datepicker();
+
+        })
+    </script>

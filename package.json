@@ -1,0 +1,10 @@
+{
+  "name": "TableTask",
+  "version": "0.0.1",
+  "description": "TableTask",
+  "dependencies": {
+    "express": "^4.10.2",
+    "handlebars": "^4.0.5",
+    "socket.io": "^1.3.7"
+  }
+}
